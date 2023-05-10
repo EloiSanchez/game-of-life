@@ -24,6 +24,8 @@ while running:
             running = False
         elif event.type == pygame.MOUSEBUTTONUP and event.button == 1:
             colony.change_cell(*pygame.mouse.get_pos())
+        elif event.type == pygame.MOUSEBUTTONUP and event.button == 3:
+            colony.step()
 
     # flip() the display to put your work on screen
     pygame.display.flip()

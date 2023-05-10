@@ -17,3 +17,6 @@ class Cell(pygame.rect.Rect):
 
     def change(self):
         self.color = 'white' if self.color == 'black' else 'black'
+
+    def set_state(self, state):
+        self.color = 'white' if state == 0 else 'black'
