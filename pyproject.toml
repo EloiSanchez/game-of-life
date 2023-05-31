@@ -1,9 +1,11 @@
 [tool.poetry]
 name = "game-of-life"
-version = "0.1.0"
-description = ""
+version = "1.0.0"
+description = "Conway's Game of Life created with Pygame. Learning project to get more comfortable with Python's OOP and inheritance."
 authors = ["Eloi <eloisanchez16@gmail.com>"]
 readme = "README.md"
+license = "GPL-3.0-or-later"
+repository = "https://github.com/EloiSanchez/game-of-life"
 packages = [{include = "game_of_life"}]
 
 [tool.poetry.dependencies]
