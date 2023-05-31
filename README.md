@@ -8,7 +8,7 @@ It was also the first time I used Pygame. Therefore, I am sure that there are go
 
 ![Game of life Screenshot](demo/game_of_life_screenshot.png)
 
-You can also see a [video](demo/demo.mp4) of the current state of the game as of 31/05/2023.
+You can also [download](demo/demo.mp4) or [watch a video in Youtube](https://www.youtube.com/watch?v=xYF5HctDvUY) of the current state of the game as of 31/05/2023.
 
 ## Features
 
@@ -74,10 +74,12 @@ and then run the game with
 python game_of_life/game_of_life.py
 ```
 
-or Windows/Mac or whatever equivalent.
+or Windows/Mac equivalent.
 
 ## About me
 
-At the time of writing this I am an Analytics Engineer working mainly with Snowflake and dbt. Nevertheless, I still love to code more general stuff such as this game to keep on improving my general coding skills.
+At the time of writing this I am working as an Analytics Engineer mainly with Snowflake and dbt. Nevertheless, I still love to code more general stuff such as this game to keep on improving my general coding skills.
 
 If you have any question, problem, suggestion or fix, please, create an issue or [contact me](mailto:eloisanchez16@gmail.com) directly.
+
+[Eloi Sanchez Ambros](https://github.com/EloiSanchez)
