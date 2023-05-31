@@ -1,14 +1,17 @@
 import pygame
+from pygame.surface import Surface
+
+from objects.button import Button
 
 
 class Menu(pygame.rect.Rect):
 
-    def __init__(self, left, top, width, height) -> None:
+    def __init__(self, left: int, top: int, width: int, height: int) -> None:
         super().__init__(left, top, width, height)
         self.info = pygame.font.Font(size = 48)
         self.state = 'stopped'
         self.config = {
-            'running': ('Running', 'dark green'),
+            'simulating': ('Running', 'dark green'),
             'stopped': ('Not running', 'red'),
         }
 
@@ -51,7 +54,7 @@ class Menu(pygame.rect.Rect):
 
         self.buttons = (self.clear_button, self.random_button, self.play_button)
 
-    def draw(self, screen):
+    def draw(self, screen: Surface) -> None:
         info, color = self.config[self.state]
 
         text = self.info.render(info, True, color)
@@ -64,37 +67,5 @@ class Menu(pygame.rect.Rect):
         for button in self.buttons:
             button.draw(screen)
 
-    def change(self):
-        self.state = 'running' if self.state != 'running' else 'stopped'
-
-
-class Button(pygame.rect.Rect):
-
-    def __init__(self, left, top, width, heigth,
-                 pad=10, text=None, color='white',
-                 pressed_color='light_gray') -> None:
-        super().__init__(left + pad, top + pad, width - 2*pad, heigth - 2*pad)
-        self.text = text
-        self.font = pygame.font.Font(size = 28) if text is not None else None
-        self.pad = pad
-        self.default_color = color
-        self.pressed_color = pressed_color
-
-    def draw(self, screen):
-        if self.is_pressed():
-            pygame.draw.rect(screen, self.pressed_color, self.inflate(-7, -7))
-        else:
-            pygame.draw.rect(screen, self.default_color, self)
-
-        if self.text:
-            text = self.font.render(self.text, True, 'black')
-
-            width = self.centerx - text.get_width() // 2
-            height = self.centery - text.get_height() // 2
-
-            screen.blit(text, (width, height))
-
-    def is_pressed(self):
-        left_button, *_ = pygame.mouse.get_pressed()
-        return left_button is True and \
-            self.collidepoint(*pygame.mouse.get_pos())
+    def change(self) -> None:
+        self.state = 'simulating' if self.state != 'simulating' else 'stopped'

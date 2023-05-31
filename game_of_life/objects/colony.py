@@ -1,7 +1,7 @@
 import pygame
 import numpy as np
 
-from .cell import Cell
+from objects.cell import Cell
 
 
 class Colony(pygame.rect.Rect):
@@ -15,7 +15,7 @@ class Colony(pygame.rect.Rect):
 
         for i in range(m):
             for j in range(n):
-                self.cells[i, j] = Cell(cell_size, j * cell_size, i * cell_size)
+                self.cells[i, j] = Cell(j * cell_size, i * cell_size, cell_size)
 
     def draw(self, screen):
         for cell, state in zip(self.cells.flatten(), self.states.flatten()):
