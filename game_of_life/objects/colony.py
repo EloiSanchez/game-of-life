@@ -4,15 +4,14 @@ import numpy as np
 from .cell import Cell
 
 
-class Colony():
+class Colony(pygame.rect.Rect):
     def __init__(self, m, n, cell_size) -> None:
+        super().__init__(0, 0, m * cell_size, n * cell_size)
         self.rows, self.cols = m, n
         self.states = np.zeros((m, n), dtype=int)
         self.cell_size = cell_size
         self.cells = np.empty((m, n), dtype=object)
-        self.area = pygame.rect.Rect(0, 0, m * cell_size, n * cell_size)
         self.indices = np.arange(m*n).reshape(m,n)
-
 
         for i in range(m):
             for j in range(n):
@@ -23,8 +22,14 @@ class Colony():
             cell.set_state(state)
             cell.draw(screen)
 
+    def clear(self):
+        self.states = np.zeros((self.rows, self.cols), dtype=int)
+
+    def randomize(self):
+        self.states = np.random.randint(0, 2, (self.rows, self.cols))
+
     def change_cell(self, x, y):
-        if 0 <= x < self.area.right and 0 <= y < self.area.bottom:
+        if 0 <= x < self.right and 0 <= y < self.bottom:
             i = y // self.cell_size
             j = x // self.cell_size
             print(f'changing cell ({i}, {j}) at position ({x}, {y})')
