@@ -25,7 +25,8 @@ class Menu(pygame.rect.Rect):
             self.button_area.width // 3,
             self.button_area.height,
             text = 'Clear',
-            color = '#E0E0E0'
+            color = '#E0E0E0',
+            pressed_color='#CCFFCC'
         )
 
         self.random_button = Button(
@@ -34,7 +35,8 @@ class Menu(pygame.rect.Rect):
             self.button_area.width // 3,
             self.button_area.height,
             text = 'Random',
-            color = '#E0E0E0'
+            color = '#E0E0E0',
+            pressed_color='#CCFFCC'
         )
 
         self.play_button = Button(
@@ -43,7 +45,8 @@ class Menu(pygame.rect.Rect):
             self.button_area.width // 3,
             self.button_area.height,
             text = 'Play',
-            color = '#E0E0E0'
+            color = '#E0E0E0',
+            pressed_color='#CCFFCC'
         )
 
         self.buttons = (self.clear_button, self.random_button, self.play_button)
@@ -68,15 +71,20 @@ class Menu(pygame.rect.Rect):
 class Button(pygame.rect.Rect):
 
     def __init__(self, left, top, width, heigth,
-                 pad=10, text=None, color='pink') -> None:
+                 pad=10, text=None, color='white',
+                 pressed_color='light_gray') -> None:
         super().__init__(left + pad, top + pad, width - 2*pad, heigth - 2*pad)
         self.text = text
         self.font = pygame.font.Font(size = 28) if text is not None else None
         self.pad = pad
-        self.color = color
+        self.default_color = color
+        self.pressed_color = pressed_color
 
     def draw(self, screen):
-        pygame.draw.rect(screen, self.color, self)
+        if self.is_pressed():
+            pygame.draw.rect(screen, self.pressed_color, self.inflate(-7, -7))
+        else:
+            pygame.draw.rect(screen, self.default_color, self)
 
         if self.text:
             text = self.font.render(self.text, True, 'black')
@@ -85,3 +93,8 @@ class Button(pygame.rect.Rect):
             height = self.centery - text.get_height() // 2
 
             screen.blit(text, (width, height))
+
+    def is_pressed(self):
+        left_button, *_ = pygame.mouse.get_pressed()
+        return left_button is True and \
+            self.collidepoint(*pygame.mouse.get_pos())

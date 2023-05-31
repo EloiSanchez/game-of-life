@@ -21,10 +21,8 @@ while running:
     # fill the screen with a color to wipe away anything from last frame
     screen.fill("gray")
 
-    menu.draw(screen)
-    colony.draw(screen)
-
     cursor = pygame.mouse.get_pos()
+    left_button, *_ = pygame.mouse.get_pressed()
     for event in pygame.event.get():
 
         if event.type == pygame.QUIT:
@@ -40,6 +38,9 @@ while running:
                 colony.randomize()
             elif menu.clear_button.collidepoint(*cursor):
                 colony.clear()
+
+    menu.draw(screen)
+    colony.draw(screen)
 
     if dt >= 0.25:
         dt = 0
