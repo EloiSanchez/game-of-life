@@ -62,27 +62,3 @@ class Colony(pygame.rect.Rect):
             return np.sum(GoLArr[row:row+3, column:column+3]) - GoLArr[row+1,column+1]
 
         return np.vectorize(neigh, excluded=(1, ))(indices, GoLArr)
-
-
-
-
-def cellNeigh(element, GoLArr, m):
-    # This changes from 1, 2, 3, 4, ... indexing to (i,j) indexing
-    row, column = element // m, element % m
-    return np.sum(GoLArr[row:row+3, column:column+3]) - GoLArr[row+1,column+1]
-
-
-def GoLStep(GoLArr):
-     # We start by creating the extended matrix with outer zero rows and columns
-    n, m = np.shape(GoLArr)
-    GoLArr = np.vstack((np.zeros(m, dtype=int), GoLArr, np.zeros(m, dtype=int)))
-    GoLArr = np.hstack(((np.zeros((n+2,1), dtype=int)), GoLArr, (np.zeros((n+2,1), dtype=int))))
-
-    indices = np.arange(n*m).reshape(n,m)
-
-    # We call the cellNeigh function FOR EACH element in the indices array. We use
-    # this elements to obtain the submatrices of the GoLArr. Finally, we obtain
-    # the number of neighbors for each cell and store it in a (n,m) matrix
-    neigh = np.vectorize(cellNeigh, excluded=(1,2))(indices, GoLArr, m)
-
-    return np.where((neigh == 3) | (GoLArr[1:n+1, 1:m+1] == 1) & (neigh == 2), 1, 0)
