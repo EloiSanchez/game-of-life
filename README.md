@@ -45,10 +45,11 @@ cd game-of-life
 
 ### Poetry
 
-If using Poetry, install with
+If using Poetry, create and activate the environment with
 
 ```bash
 poetry install
+poetry shell
 ```
 
 and then run the game with
