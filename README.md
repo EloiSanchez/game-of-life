@@ -14,18 +14,18 @@ You can also [download](demo/demo.mp4) or [watch a video in Youtube](https://www
 
 Since this was a side project and I could not dedicate lots of time, I decided to limit the scope of what I wanted to implement.
 
-- Regular grid of cells that the user can click on to change state (done)
-- Working Game of Life that can propagate over time without Periodic Boundary Conditions (done)
-- Some way for the user to start and stop the simulation (done)
+- [x] Regular grid of cells that the user can click on to change state
+- [x] Working Game of Life that can propagate over time without Periodic Boundary Conditions
+- [x] Some way for the user to start and stop the simulation
 
 ### Optionals
 
-- Periodic Boundary Conditions
-- Some kind of UI menu for the user to click on (done)
-- Clear and randomize states (done)
-- Save and load states, including some predefined ones
-- Camera that can move through the grid instead of having a fixed screen
-- Slider that can change simulation speed
+- [ ] Periodic Boundary Conditions
+- [x] Some kind of UI menu for the user to click on
+- [x] Clear and randomize states
+- [ ] Save and load states, including some predefined ones
+- [ ] Camera that can move through the grid instead of having a fixed screen
+- [ ] Slider that can change simulation speed
 
 ## How to use
 
